@@ -87,7 +87,7 @@
             <td class="p-4 border-b border-blue-gray-50">
               <div class="flex flex-col">
                 <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                  {{ user.role }}
+                  {{ user.role.name_role }}
                 </p>
               </div>
             </td>
@@ -95,13 +95,13 @@
               <div class="w-max">
                 <div
                   class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                  <span class="">online</span>
+                  <span class="">{{ user.status }}</span>
                 </div>
               </div>
             </td>
             <td class="p-4 border-b border-blue-gray-50">
               <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                23/04/18
+                {{ user.created_at | date:'dd/MM/yyyy' }}
               </p>
             </td>
             <td class="p-4 border-b border-blue-gray-50">

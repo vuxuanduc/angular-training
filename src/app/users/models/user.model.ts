@@ -1,3 +1,7 @@
+export interface Role {
+    id?: number,
+    name_role: string
+}
 export interface User {
     id?:number,
     name: string,
@@ -7,5 +11,5 @@ export interface User {
     created_at: string,
     updated_at: string,
     role_id: number,
-    role: object
+    role: Role
 }
