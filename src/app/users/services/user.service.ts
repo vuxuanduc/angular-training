@@ -12,8 +12,13 @@ export class UserService {
     private api = `${environment.apiUrl}/users`;
 
     constructor(private http: HttpClient) {};
+
     getAll(): Observable<User[]> {
         return this.http.get<User[]>(this.api);
+    }
+
+    delete(id: number): Observable<{ message: string }> {
+        return this.http.delete<{ message: string }>(`${environment.apiUrl}/users/delete/${id}`);
     }
 }
 
