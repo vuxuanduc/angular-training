@@ -9,12 +9,19 @@ import { environment } from "../../../environments/environment";
 })
 
 export class UserService {
-    private api = `${environment.apiUrl}/users`;
 
     constructor(private http: HttpClient) {};
 
     getAll(): Observable<User[]> {
-        return this.http.get<User[]>(this.api);
+        return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    }
+
+    getUserId(id: number): Observable<User> {
+        return this.http.get<User>(`${environment.apiUrl}/users/${id}`)
+    } 
+
+    createUser(userData: User): Observable<any> {
+        return this.http.post(`${environment.apiUrl}/users/create`, userData);
     }
 
     delete(id: number): Observable<{ message: string }> {
