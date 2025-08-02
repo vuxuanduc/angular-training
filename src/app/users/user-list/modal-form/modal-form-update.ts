@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -76,6 +76,7 @@ import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
   `,
 })
 export class NzDemoModalAsyncComponent {
+  @Output() updated = new EventEmitter<void>();
   isVisible = false;
   form: FormGroup;
 
@@ -112,7 +113,8 @@ export class NzDemoModalAsyncComponent {
               nzTitle: 'Thành công',
               nzContent: res.message || 'Sửa thành công',
             });
-
+            this.handleCancel();
+            this.updated.emit();
           } else {
             this.modal.error({
               nzTitle: 'Thất bại',
