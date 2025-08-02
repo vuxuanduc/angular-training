@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { CommonModule } from '@angular/common';
@@ -6,8 +6,10 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { ModalFormComponent } from './modal-form-add/modal-form-add';
+import { ModalFormAddComponent } from './modal-form/modal-form-add';
+import { NzDemoModalAsyncComponent } from './modal-form/modal-form-update';
 @Component({
+  
   standalone: true,
   selector: 'app-user-list',
   imports: [
@@ -15,7 +17,8 @@ import { ModalFormComponent } from './modal-form-add/modal-form-add';
     NzTableModule,
     NzTagModule,
     NzIconModule,
-    ModalFormComponent,
+    ModalFormAddComponent,
+    NzDemoModalAsyncComponent
   ],
   providers: [NzModalService],
   templateUrl: './user-list.html',
@@ -23,9 +26,10 @@ import { ModalFormComponent } from './modal-form-add/modal-form-add';
 })
 export class UserList implements OnInit {
   users: User[] = [];
+  @ViewChild(NzDemoModalAsyncComponent) modalEdit!: NzDemoModalAsyncComponent;
   constructor(
     private userService: UserService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {}
 
   ngOnInit(): void {
@@ -34,27 +38,22 @@ export class UserList implements OnInit {
     });
   }
 
-  openFormModal(id?: number): void {
+  openFormAddModal(): void{
     const modalRef = this.modal.create({
       nzTitle: 'Create User',
-      nzContent: ModalFormComponent,
+      nzContent: ModalFormAddComponent,
       nzFooter: null,
       nzWidth: 600,
     });
-    if (id != undefined) {
-      this.userService.getUserId(id).subscribe((res) => {
-        const actuaUser = (res as any).user;
-        if (modalRef.componentInstance) {
-          modalRef.componentInstance.dataUser = actuaUser;
-          console.log(actuaUser);
-        }
-      });
-    }
     modalRef.afterClose.subscribe((result) => {
       if (result) {
         this.ngOnInit();
       }
     });
+  }
+
+  openModalEdit(id: number): void {
+    this.modalEdit.showModal(id);
   }
 
   onDelete(id: number) {

@@ -6,7 +6,7 @@
   >
     <div class="flex items-center justify-between gap-8 mb-8 mt-2">
       <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
-        <button style="color: white;" nz-button nzType="primary" (click) = "openFormModal()"
+        <button style="color: white;" nz-button nzType="primary" (click) = "openFormAddModal()"
           class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           type="button"
         >
@@ -89,10 +89,12 @@
           <td>{{ user.created_at | date : "dd/MM/yyyy" }}</td>
           <td>
             <nz-icon class="btn-delete" nzType="delete" (click) = "onDelete(user.id!)" nzTheme="fill"></nz-icon>
-            <nz-icon class="mx-4 btn-edit" nz-button (click) = "openFormModal(user.id)" nzType="edit" nzTheme="fill"></nz-icon>
+            <nz-icon class="mx-4 btn-edit" nz-button nzType="edit" (click) = "openModalEdit(user.id!)" nzTheme="fill"></nz-icon>
           </td>
         </tr>
       </tbody>
     </nz-table>
   </div>
 </div>
+<nz-demo-modal-async></nz-demo-modal-async>
+
