@@ -1,1 +1,12 @@
-<p>leaflet works!</p>
+<div id="map-container">
+    <div id="map"></div>
+    <div class="mt-2">
+        <nz-select 
+        nzPlaceHolder="Chọn tilemap"
+        [formControl]="tileControl" style="width: 200px;">
+            <nz-option *ngFor="let tile of tileOptions" [nzValue]="tile.value" [nzLabel]="tile.label">
+                
+            </nz-option>
+        </nz-select>
+    </div>
+</div>

@@ -17,7 +17,6 @@ import { NzDemoModalAsyncComponent } from './modal-form/modal-form-update';
     NzTableModule,
     NzTagModule,
     NzIconModule,
-    ModalFormAddComponent,
     NzDemoModalAsyncComponent
   ],
   providers: [NzModalService],

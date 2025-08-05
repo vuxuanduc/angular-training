@@ -33,9 +33,16 @@
               }
             ],
             "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
-            ]
+            ],
+            "scripts": [
+              "node_modules/leaflet/dist/leaflet.js"
+            ],
+            "allowedCommonJsDependencies": ["leaflet", "leaflet.markercluster"]
           },
           "configurations": {
             "production": {
