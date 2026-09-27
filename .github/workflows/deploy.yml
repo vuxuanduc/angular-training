@@ -1,0 +1,31 @@
+
+name: Deploy to production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Pull latest code
+        run: |
+          cd /projects/angular-training
+          git fetch origin
+          git reset --hard origin/master
+
+      - name: Install dependencies
+        run: |
+          cd /projects/angular-training
+          npm ci
+
+      - name: Build Angular app
+        run: |
+          cd /projects/angular-training
+          ng build --output-path=../Angular-Training/dist
+
+      - name: Reload nginx
+        run: |
+          sudo systemctl reload nginx
