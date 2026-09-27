@@ -32,7 +32,3 @@ jobs:
         run: |
           cd /projects/angular-training
           ng build --output-path=../Angular-Training/dist
-
-      - name: Reload nginx
-        run: |
-          sudo systemctl reload nginx
