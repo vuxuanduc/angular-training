@@ -59,6 +59,16 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
         </nz-form-control>
       </nz-form-item>
 
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Status</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <nz-select formControlName="status" nzPlaceHolder="Select Status">
+            <nz-option [nzValue]="'Active'" nzLabel="Active"></nz-option>
+            <nz-option [nzValue]="'Lock'" nzLabel="Lock"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
       <div class="text-right mt-4">
         <button nz-button nzType="primary" [disabled]="form.invalid">
           Create
