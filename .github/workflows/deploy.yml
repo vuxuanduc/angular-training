@@ -1,4 +1,3 @@
-
 name: Deploy to production
 
 on:
@@ -15,6 +14,14 @@ jobs:
           cd /projects/angular-training
           git fetch origin
           git reset --hard origin/master
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify Node version
+        run: node -v
 
       - name: Install dependencies
         run: |
